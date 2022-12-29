@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Список гаданий{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1 class="text-light">Список гаданий</h1>
+        {% for fortune in fortunes %}
+            <style type="text/css">
+        .fortune {
+            background-color: #580599;
+        }
+            </style>
+            <div class="py-3">
+                <div class="badge fortune p-3 col-12">
+                    <p class="h3">{{ fortune.title_for_main_page }}</p>
+                    <p class="text-light">{{ fortune.fortune_description }}</p>
+                    <div class="justify-content-end">
+                        <a id="buy_button"
+                           class="btn btn-primary"
+                           href="{% url 'fortune:fortune_detail' fortune.slug %}"
+                           role="button"
+                           onclick="start_load()">
+                            <span class="price">Купить {{ fortune.price }} 🪙</span>
+                        </a>
+                        <script type="text/javascript">
+                        function start_load() {
+                            elements = document.getElementsByClassName('btn');
+                            for (var i = 0; i < elements.length; i++) {
+                                elements[i].classList.add('disabled');
+                            }
+                            elements = document.getElementsByClassName('price');
+                            for (var i = 0; i < elements.length; i++) {
+                                elements[i].innerHTML = 'Загрузка...';
+                            }
+                        
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

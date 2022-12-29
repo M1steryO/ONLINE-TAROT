@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+    <div class="container rounded bg-white mt-5 mb-5 p-5">
+        <h1 class="text-center text-dark col-12">Ваш магический профиль</h1>
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    {% include 'users/user_info.html' %}
+                </div>
+            </div>
+            <div class="col-md-9 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Настройки профиля</h4>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <small>Для наибольшей точности предсказаний рекомендуется заполнить все данные профиля</small>
+                    </div>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% load static %}
+                        <div class="container justify-content-center text-light">
+                            {% for field, error in form.errors.items %}
+                                <div class="alert alert-danger my-3 p-1" role="alert">
+                                    {{ error|striptags }}
+                                </div>
+                            {% endfor %}
+                            {% for field in form %}
+                                <label class="text-dark text-center"><b>{{ field.label_tag }}</b></label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <p class="text-dark help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'users:password_change' %}">
+            <button class="btn btn-primary profile-button" type="submit">Сменить пароль</button>
+        </a>
+    </div>
+{% endblock %}
