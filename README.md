@@ -1,7 +1,7 @@
 [![Django CI](https://github.com/Shagulka/tarot-django/actions/workflows/django.yml/badge.svg)](https://github.com/Shagulka/tarot-django/actions/workflows/django.yml)
 [![FLake8 CI](https://github.com/Shagulka/tarot-django/actions/workflows/flake8.yml/badge.svg)](https://github.com/Shagulka/tarot-django/actions/workflows/flake8.yml)
 
-# ГАДАНИЕ НА КАРТАХ ТАРО НЕДОРОГО
+# ГАДАНИЕ НА КАРТАХ ТАРО 
 
 Сайт с гаданием на картах Таро с помощью GPT-3
 
